@@ -17,25 +17,51 @@ module.exports.addEmployee = async function (req, res) {
 
 module.exports.deleteEmployee = async function (req, res) {
     try {
-        console.log("delete employee");
+        console.log("delete");
+        console.log(req.body);
+        var deletedEmployee = await Employee.findOneAndDelete({email :req.body.email});
+        console.log(deletedEmployee== null);
+        if(deletedEmployee== null){
+            return res.send("already Deleted !!");
+        }else{
+            return res.send("deleted");
+        }
     } catch (error) {
-        console.log("error");
+        return res.send("Error in deleting Employee");
     }
 }
 
 module.exports.updateEmployee = async function (req, res) {
     try {
-        console.log("delete employee");
+        console.log("update employee");
+        // var updatedEmployee = await Employee.findOneAndUpdate(req.body);
+        // return res.send(updatedEmployee);
+        Employee.findOne({email : req.body.email} , function(error , updateEmployee){
+            if(error){
+                return res.send("error");
+            }else{
+                updateEmployee.name = req.body.name;
+                updateEmployee.password = req.body.password;
+                updateEmployee.save();
+                return res.send(updateEmployee);
+            }
+        })
     } catch (error) {
-        console.log("error");
+        return res.send("Error in updating Employee !!");
     }
 }
 
 module.exports.viewEmployee = async function (req, res) {
     try {
-        console.log('view employee');
+        // here we have to pass id \
+        var viewEmployee = await Employee.findById(req.params.id);
+        if(!viewEmployee){
+            return res.send("employee Not find !!");
+        }else{
+            return res.send(viewEmployee);
+        }
     } catch (error) {
-        console.log("error");
+        return res.send("error in finding employee");
     }
 }
 
