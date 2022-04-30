@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const performance = mongoose.Schema({
-    communication: {
+    problemSolving: {
         type: String,
         require: true
     },
@@ -8,7 +8,7 @@ const performance = mongoose.Schema({
         type: String,
         require: true
     },
-    problemSolving: {
+    communication: {
         type: String,
         require: true
     },
@@ -20,14 +20,14 @@ const performance = mongoose.Schema({
         type: String,
         require: true
     },
-    goalsAndMeetDeadlines: {
-        type: String,
-        require: true
-    },
     employeeId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: `Employee`
-    }
+    },
+    performanceList :[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: `Employee`
+    }]
 }, { timestamp: true });
 const Performance = mongoose.model('performance', performance);
 module.exports = Performance;

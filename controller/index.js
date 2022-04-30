@@ -9,7 +9,7 @@ module.exports.LoginEmployee = async function (req, res) {
     try {
         const loginEmployee = await Employee.find({ email: req.body.email });
         if (loginEmployee.length != 0 && loginEmployee) {
-            return res.redirect('/employee/list');
+            return res.redirect('/employee/perfromancelist');
         } else {
             return res.send("Login Password doesnot match");
         }
