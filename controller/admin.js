@@ -1,4 +1,5 @@
 const Employee = require('../models/employee');
+const Performance = require('../models/performance');
 module.exports.addEmployee = async function (req, res) {
     try {
         const employeePresent = await Employee.find({ email: req.body.email });
@@ -36,6 +37,7 @@ module.exports.updateEmployee = async function (req, res) {
         console.log("update employee");
         // var updatedEmployee = await Employee.findOneAndUpdate(req.body);
         // return res.send(updatedEmployee);
+        
         Employee.findOne({email : req.body.email} , function(error , updateEmployee){
             if(error){
                 return res.send("error");
@@ -69,7 +71,8 @@ module.exports.viewEmployee = async function (req, res) {
 // for performance review
 module.exports.addReview = async function (req, res) {
     try {
-        console.log("adding review");
+    
+        console.log("addReview");
     } catch (error) {
         console.log("error");
     }
@@ -78,7 +81,7 @@ module.exports.addReview = async function (req, res) {
 
 module.exports.updatePerformance = async function (req, res) {
     try {
-        console.log("update performance review");
+        console.log("u");
     } catch (error) {
         console.log("error");
     }

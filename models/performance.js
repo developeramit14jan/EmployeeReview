@@ -29,5 +29,5 @@ const performance = mongoose.Schema({
         ref: `Employee`
     }
 }, { timestamp: true });
-const Performance = mongoose.model('performance', 'performance');
+const Performance = mongoose.model('performance', performance);
 module.exports = Performance;
