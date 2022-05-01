@@ -1,14 +1,20 @@
 const Employee = require('../models/employee');
 const Performance = require('../models/performance');
+module.exports.addEmployeePage = async function(req , res){
+    return res.render('adminAddEmployee',{
+        title:"Add Employee"
+    })
+}
 module.exports.addEmployee = async function (req, res) {
     try {
         const employeePresent = await Employee.find({ email: req.body.email });
         if (employeePresent.length > 0 && employeePresent) {
-            return res.send(employeePresent);
+            return res.redirect('/admin_employee/employee_dashboard');
         } else {
             const employee = new Employee(req.body);
             const employeeRegister = await employee.save();
-            return res.send(employeeRegister);
+            // return res.send(employeeRegister);
+            return res.redirect('/admin_employee/employee_dashboard');
 
         }
     } catch (error) {
@@ -23,9 +29,11 @@ module.exports.deleteEmployee = async function (req, res) {
         var deletedEmployee = await Employee.findOneAndDelete({email :req.body.email});
         console.log(deletedEmployee== null);
         if(deletedEmployee== null){
-            return res.send("already Deleted !!");
+            // return res.send("already Deleted !!");
+            return res.redirect('/admin_employee/employee_dashboard');
         }else{
-            return res.send("deleted");
+            // return res.send("deleted");
+            return res.redirect('/admin_employee/employee_dashboard');
         }
     } catch (error) {
         return res.send("Error in deleting Employee");
@@ -35,19 +43,9 @@ module.exports.deleteEmployee = async function (req, res) {
 module.exports.updateEmployee = async function (req, res) {
     try {
         console.log("update employee");
-        // var updatedEmployee = await Employee.findOneAndUpdate(req.body);
+        var updatedEmployee = await Employee.findOneAndUpdate(req.body);
         // return res.send(updatedEmployee);
-        
-        Employee.findOne({email : req.body.email} , function(error , updateEmployee){
-            if(error){
-                return res.send("error");
-            }else{
-                updateEmployee.name = req.body.name;
-                updateEmployee.password = req.body.password;
-                updateEmployee.save();
-                return res.send(updateEmployee);
-            }
-        })
+        return res.redirect('/admin_employee/employee_dashboard');
     } catch (error) {
         return res.send("Error in updating Employee !!");
     }
@@ -56,7 +54,7 @@ module.exports.updateEmployee = async function (req, res) {
 module.exports.viewEmployee = async function (req, res) {
     try {
         // here we have to pass id \
-        var viewEmployee = await Employee.findById(req.params.id);
+        var viewEmployee = await Employee.findOne(req.body);
         if(!viewEmployee){
             return res.send("employee Not find !!");
         }else{

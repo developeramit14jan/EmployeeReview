@@ -22,11 +22,13 @@
                     <td>
                         <%= i+1 %>
                     </td>
-                    <td><%= allEmployee[i].name %>
+                    <td>
+                        <%= allEmployee[i].name %>
                     </td>
-                    <td><%= allEmployee[i].email %>
+                    <td>
+                        <%= allEmployee[i].email %>
                     </td>
-                    <td><button><a href="/employee/<%= allEmployee[i].id %>"><%= feedback %></button></td>
+                    <td><button><a href="/employee/<%= allEmployee[i].id %>"> Feedback</button></td>
                 </tr>
                 <% } %>
                     </tr>

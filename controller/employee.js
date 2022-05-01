@@ -26,8 +26,7 @@ module.exports.performanceReviewList = async function (req, res) {
         var allEmployee = await Employee.find({});
         res.render('employee', {
             title: "Employee",
-            allEmployee: allEmployee,
-            feedback: "Feedback"
+            allEmployee: allEmployee
         });
     } catch (error) {
         return res.send("error in sending data");
