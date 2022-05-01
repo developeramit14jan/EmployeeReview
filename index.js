@@ -8,7 +8,7 @@ app.use(express.urlencoded({extended :true}));
 app.use('/', require('./routes/index'));
 app.listen(port, function (error) {
     if (error) {
-        console.log(error);
+        console.log("Error while creating server !!");
     } else {
         console.log("server is running !!");
     }

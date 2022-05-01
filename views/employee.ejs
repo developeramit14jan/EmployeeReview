@@ -9,13 +9,28 @@
 <body>
     <div id="employeeData">
         <h1>List of performance review : </h1>
-        <% for(var i=0; i<allEmployee.length; i++) {%>
-            <div>
-                <span>Name : <%= allEmployee[i].name %></span>
-                <span>Email : <%= allEmployee[i].email %></span>
-                <button><a href="/employee/<%= allEmployee[0].id %>">Feedback</a></button><br><br>
-            </div>
-            <% } %>
+        <table>
+            <tr>
+                <th>SNo : </th>
+                <th>Name: </th>
+                <th>Email : </th>
+                <th>Action : </th>
+            </tr>
+
+            <% for(var i=0; i<allEmployee.length; i++) {%>
+                <tr>
+                    <td>
+                        <%= i+1 %>
+                    </td>
+                    <td><%= allEmployee[i].name %>
+                    </td>
+                    <td><%= allEmployee[i].email %>
+                    </td>
+                    <td><button><a href="/employee/<%= allEmployee[i].id %>"><%= feedback %></button></td>
+                </tr>
+                <% } %>
+                    </tr>
+        </table>
     </div>
 </body>
 

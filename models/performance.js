@@ -23,11 +23,7 @@ const performance = mongoose.Schema({
     employeeId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: `Employee`
-    },
-    performanceList :[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: `Employee`
-    }]
+    }
 }, { timestamp: true });
 const Performance = mongoose.model('performance', performance);
 module.exports = Performance;

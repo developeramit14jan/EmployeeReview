@@ -17,7 +17,7 @@ const employee = new mongoose.Schema(
             type: String,
             enum: ['employee', 'admin'],
             default: 'employee'
-        }
+        },
     }, { timestamps: true }
 );
 const Employee = mongoose.model('employee', employee);

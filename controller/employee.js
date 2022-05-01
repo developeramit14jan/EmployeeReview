@@ -1,4 +1,5 @@
 const Employee = require('../models/employee');
+const Admin = require('../models/admin');
 const Performance = require('../models/performance');
 module.exports.signup = async function (req, res) {
     res.render('home', {
@@ -23,38 +24,36 @@ module.exports.register = async function (req, res) {
 module.exports.performanceReviewList = async function (req, res) {
     try {
         var allEmployee = await Employee.find({});
-        console.log(allEmployee);
         res.render('employee', {
             title: "Employee",
-            allEmployee: allEmployee
+            allEmployee: allEmployee,
+            feedback: "Feedback"
         });
     } catch (error) {
         return res.send("error in sending data");
     }
 }
 
-// module.exports.performanceReviewList = async function (req, res) {
-//     try {
-//         var allEmployee = await Employee.find({});
-//         console.log(allEmployee);
-//         return res.send("List!!");
-//     } catch (error) {
-//         return res.send("error");
-//     }
-// }
+
 
 module.exports.submitFeedback = async function (req, res) {
     try {
+        var performancePresent = await Performance.find({ employeeId: req.body.employeeId });
+        if (!performancePresent) {
+            var addPerformance = await Performance(req.body);
+            addPerformance.save();
+        }
         return res.redirect('/employee/perfromancelist');
-        // return res.send(req.body);
     } catch (error) {
         return res.send("error");
     }
 }
 module.exports.feedbackPage = async function (req, res) {
     try {
+        console.log(req.params.id)
         return res.render('submitFeedback', {
-            title: "Feedback"
+            title: "Feedback",
+            id: req.params.id
         });
     } catch (error) {
         return res.send("error in page");
