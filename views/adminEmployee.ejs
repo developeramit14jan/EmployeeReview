@@ -1,0 +1,88 @@
+<html>
+
+<head>
+    <title>
+        <%= title%>
+    </title>
+</head>
+
+<body>
+    <div class="nav">
+        <a class="active" href="#">Home</a>
+        <a href="/admin_performance/dashBoard">Feedback</a>
+    </div>
+    <section>
+
+        <div id="employeeData">
+            <h1>List Of Employee : </h1>
+            <table>
+                <tr>
+                    <th>SNo : </th>
+                    <th>Name: </th>
+                    <th>Email : </th>
+
+                </tr>
+
+                <% for(var i=0; i<allEmployee.length; i++) {%>
+                    <tr>
+                        <td>
+                            <%= i+1 %>
+                        </td>
+                        <td>
+                            <%= allEmployee[i].name %>
+                        </td>
+                        <td>
+                            <%= allEmployee[i].email %>
+                        </td>
+
+                    </tr>
+                    <% } %>
+                        </tr>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <h1>Perform Action On Employee :</h1>
+        <ul>
+
+            <form action="/admin_employee/add_employee" , method="POST">
+                <li>
+                    <input id="name" type="text" name="name" placeholder="Enter The Name">
+                    <input id="email" type="text" name="email" placeholder="Enter The Email">
+                    <input id="password" type="text" name="password" placeholder="Enter The Password">
+                    <button id="button">Add Employee</button>
+                </li>
+            </form>
+            <!-- delete -->
+            <form action="/admin_employee/delete_employee" , method="POST">
+                <li>
+                    <input id="name" type="text" name="name" placeholder="Enter The Name">
+                    <input id="email" type="text" name="email" placeholder="Enter The Email">
+                    <input id="password" type="text" name="password" placeholder="Enter The Password">
+                    <button id="button">Delete Employee</button>
+                </li>
+            </form>
+            <!-- update -->
+
+            <form action="/admin_employee/update_employee" , method="POST">
+                <li>
+                    <input id="name" type="text" name="name" placeholder="Enter The Name">
+                    <input id="email" type="text" name="email" placeholder="Enter The Email">
+                    <input id="password" type="text" name="password" placeholder="Enter The Password">
+                    <button id="button">Update Employee</button>
+                </li>
+            </form>
+
+            <!-- view -->
+
+
+        </ul>
+    </section>
+
+
+
+
+</body>
+
+</html>

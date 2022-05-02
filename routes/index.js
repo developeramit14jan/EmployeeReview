@@ -7,5 +7,4 @@ router.post('/register', index.registerAdmin);// to be deleted
 router.use('/employee' , require('./employee'));
 router.use('/admin_employee' ,require('./adminEmployee'));
 router.use('/admin_performance' , require('./adminPerformanceReview'));
-console.log('router of admin is running '); 
 module.exports = router;

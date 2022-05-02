@@ -2,8 +2,10 @@ const Employee = require('../models/employee');
 const Performance = require('../models/performance');
 const Admin = require('../models/admin');
 module.exports.addEmployeePage = async function (req, res) {
-    return res.render('adminAddEmployee', {
-        title: "Add Employee"
+    var allEmployee = await Employee.find({});
+    return res.render('adminEmployee', {
+        title: "Admin Employee",
+        allEmployee : allEmployee
     })
 }
 module.exports.addEmployee = async function (req, res) {
@@ -68,6 +70,19 @@ module.exports.viewEmployee = async function (req, res) {
 
 
 // for performance review
+
+
+
+//admin performance page
+module.exports.adminPerformancePage = async function(req , res){
+    try{
+        return res.render('adminPerformance' , {
+            title : "AdminPerformancePage"
+        })
+    }catch(error){
+        return res.send("error");
+    }
+}
 module.exports.addReview = async function (req, res) {
     try {
 
