@@ -6,4 +6,5 @@ router.post('/add_employee' , admin.addEmployee);
 router.post('/delete_employee' , admin.deleteEmployee);
 router.post('/update_employee' , admin.updateEmployee);
 router.get('/view_employee', admin.viewEmployee);
+router.post('/assign_employee' , admin.assignEmployee);
 module.exports = router;

@@ -9,13 +9,25 @@ module.exports.signup = async function (req, res) {
 
 module.exports.register = async function (req, res) {
     try {
-        var presentEmployee = await Employee.findOne({ email: req.body.email });
-        if (presentEmployee) {
+        console.log(req.body)
+        var presentEmployee = await Employee.find({ email: req.body.email });
+        if (presentEmployee.email === req.body.email) {
+            console.log("Amit")
             return res.redirect('/');
         } else {
             const registerEmployee = new Employee(req.body);
             const resistered = await registerEmployee.save();
+            console.log(resistered.id);
+            var allAdmin = await Admin.find({});
+            for (var i = 0; i < allAdmin.length; i++) {
+                allAdmin[i].employeeId.push(resistered.id);
+                allAdmin[i].save();
+            }
+            console.log(allAdmin[0].employeeId);
+
+            // return res.redirect('/');
             return res.redirect('/');
+            // return res.send("registered");
         }
     } catch (error) {
         return res.send(error);
@@ -24,9 +36,12 @@ module.exports.register = async function (req, res) {
 module.exports.performanceReviewList = async function (req, res) {
     try {
         var allEmployee = await Employee.find({});
+
+        var like = false;
         res.render('employee', {
             title: "Employee",
-            allEmployee: allEmployee
+            allEmployee: allEmployee,
+            like: like
         });
     } catch (error) {
         return res.send("error in sending data");
@@ -37,10 +52,17 @@ module.exports.performanceReviewList = async function (req, res) {
 
 module.exports.submitFeedback = async function (req, res) {
     try {
-        var performancePresent = await Performance.find({ employeeId: req.body.employeeId });
-        if (!performancePresent) {
-            var addPerformance = await Performance(req.body);
-            addPerformance.save();
+        like = true;
+        // var performancePresent = await Performance.find({ employeeId: req.body.employeeId });
+        // if (!performancePresent) {
+        var addPerformance = await Performance(req.body);
+        addPerformance.save();
+        const allAdmin = await Admin.find({});
+        console.log(addPerformance._id);
+        // console.log(allAdmin);
+        for (var i = 0; i < allAdmin.length; i++) {
+            allAdmin[i].performance.push(addPerformance.id);
+            allAdmin[i].save();
         }
         return res.redirect('/employee/perfromancelist');
     } catch (error) {

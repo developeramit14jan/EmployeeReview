@@ -1,8 +1,9 @@
 const Employee = require('../models/employee');
 const Performance = require('../models/performance');
-module.exports.addEmployeePage = async function(req , res){
-    return res.render('adminAddEmployee',{
-        title:"Add Employee"
+const Admin = require('../models/admin');
+module.exports.addEmployeePage = async function (req, res) {
+    return res.render('adminAddEmployee', {
+        title: "Add Employee"
     })
 }
 module.exports.addEmployee = async function (req, res) {
@@ -26,12 +27,12 @@ module.exports.deleteEmployee = async function (req, res) {
     try {
         console.log("delete");
         console.log(req.body);
-        var deletedEmployee = await Employee.findOneAndDelete({email :req.body.email});
-        console.log(deletedEmployee== null);
-        if(deletedEmployee== null){
+        var deletedEmployee = await Employee.findOneAndDelete({ email: req.body.email });
+        console.log(deletedEmployee == null);
+        if (deletedEmployee == null) {
             // return res.send("already Deleted !!");
             return res.redirect('/admin_employee/employee_dashboard');
-        }else{
+        } else {
             // return res.send("deleted");
             return res.redirect('/admin_employee/employee_dashboard');
         }
@@ -55,9 +56,9 @@ module.exports.viewEmployee = async function (req, res) {
     try {
         // here we have to pass id \
         var viewEmployee = await Employee.findOne(req.body);
-        if(!viewEmployee){
+        if (!viewEmployee) {
             return res.send("employee Not find !!");
-        }else{
+        } else {
             return res.send(viewEmployee);
         }
     } catch (error) {
@@ -69,7 +70,7 @@ module.exports.viewEmployee = async function (req, res) {
 // for performance review
 module.exports.addReview = async function (req, res) {
     try {
-    
+
         console.log("addReview");
     } catch (error) {
         console.log("error");
@@ -93,3 +94,16 @@ module.exports.viewPerformance = async function (req, res) {
     }
 }
 
+// assign employee to participate in feedback
+module.exports.assignEmployee = async function (req, res) {
+    try {
+        const forEmployee = await Employee.find({ email: req.body.forEmployee });
+        const assignFeedback = await Employee.find({ email: req.body.assignFeedback });
+        assignFeedback[0].feedback.push(assignFeedback[0]._id.toString());
+        const saved = await assignFeedback[0].save();
+        console.log(saved);
+        return res.send("Assign");
+    } catch (error) {
+        return res.send("error");
+    }
+}

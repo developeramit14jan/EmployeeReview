@@ -28,7 +28,9 @@
                     <td>
                         <%= allEmployee[i].email %>
                     </td>
-                    <td><button><a href="/employee/<%= allEmployee[i].id %>"> Feedback</button></td>
+                    <% if(like == false){ %>
+                        <td><button><a href="/employee/<%= allEmployee[i].id %>"> Feedback</button></td>
+                            <% } %>
                 </tr>
                 <% } %>
                     </tr>

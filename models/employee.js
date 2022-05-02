@@ -17,7 +17,10 @@ const employee = new mongoose.Schema(
             type: String,
             enum: ['employee', 'admin'],
             default: 'employee'
-        }
+        },
+        feedback :[{
+            type : String
+        }]
     }, { timestamps: true }
 );
 const Employee = mongoose.model('employee', employee);
