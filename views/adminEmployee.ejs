@@ -20,6 +20,7 @@
                     <th>SNo : </th>
                     <th>Name: </th>
                     <th>Email : </th>
+                    <th>Password : </th>
 
                 </tr>
 
@@ -33,6 +34,9 @@
                         </td>
                         <td>
                             <%= allEmployee[i].email %>
+                        </td>
+                        <td>
+                            <%= allEmployee[i].password%>
                         </td>
 
                     </tr>
@@ -74,7 +78,14 @@
                 </li>
             </form>
 
-            <!-- view -->
+            <!-- assign employee for feedback of another employee -->
+            <form>
+                <li>
+                    <input id="toEmployeeEmail" type="text", name="toEmployeeEmail" , placeholder="Enter To Employee Email">
+                    <input id ="fromEmployeeEmail" type ="text" ,name ="fromEmployeeEmail" , placeholder="Enter From Employee Email"  >
+                    <button id="button">Assign Employee For Feedback</button>
+                </li>
+            </form>
 
 
         </ul>

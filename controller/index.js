@@ -11,7 +11,8 @@ module.exports.LoginEmployee = async function (req, res) {
     try {
         if (req.body.role == "employee") {
             const loginEmployee = await Employee.find({ email: req.body.email });
-            if (loginEmployee.email === req.body.email && loginEmployee.password === req.body.password) {
+            console.log(loginEmployee.email);
+            if (loginEmployee[0].email === req.body.email && loginEmployee[0].password === req.body.password) {
                 return res.redirect('/employee/perfromancelist');
             } else {
                 return res.redirect('back');

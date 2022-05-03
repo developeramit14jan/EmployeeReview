@@ -18,6 +18,10 @@ const employee = new mongoose.Schema(
             enum: ['employee', 'admin'],
             default: 'employee'
         },
+        performances : {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : `Performance`
+        },
         feedback :[{
             type : String
         }]
