@@ -62,16 +62,13 @@ module.exports.submitFeedback = async function (req, res) {
         const employeeById = await Employee.findById(req.body.employeeId);
         // console.log(employeeById);
         employeeById.performances = addPerformance.id;
-        employeeById.save();
+        await employeeById.save();
         // console.log(employeeById);
         // const data = employeeById.populate('');
-        console.log("problem");
-      employeeById.populate('performances').exec((error , doc)=>{
-          if(error){return res.send(error)};
-          console.log(doc);
-          return res.send(doc);
-      });
-        console.log(data);
+        // console.log("problem");
+    //    const data =  await employeeById.populate('performances');
+    
+    //     console.log(data);
         const allAdmin = await Admin.find({});
         console.log(addPerformance._id);
         // console.log(allAdmin);

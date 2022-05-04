@@ -112,12 +112,11 @@ module.exports.viewPerformance = async function (req, res) {
 // assign employee to participate in feedback
 module.exports.assignEmployee = async function (req, res) {
     try {
-        const forEmployee = await Employee.find({ email: req.body.forEmployee });
-        const assignFeedback = await Employee.find({ email: req.body.assignFeedback });
-        assignFeedback[0].feedback.push(assignFeedback[0]._id.toString());
-        const saved = await assignFeedback[0].save();
-        console.log(saved);
-        return res.send("Assign");
+        const forEmployee = await Employee.find({ email: req.body.fromEmployeeEmail });
+        const assignFeedback = await Employee.find({ email: req.body.toEmployeeEmail });
+        assignFeedback[0].feedback.push(forEmployee[0]._id.toString());
+        await assignFeedback[0].save();
+        return res.redirect('back');
     } catch (error) {
         return res.send("error");
     }

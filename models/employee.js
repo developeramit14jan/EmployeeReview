@@ -20,7 +20,7 @@ const employee = new mongoose.Schema(
         },
         performances : {
             type : mongoose.Schema.Types.ObjectId,
-            ref : `Performance`
+            ref : `performance`
         },
         feedback :[{
             type : String

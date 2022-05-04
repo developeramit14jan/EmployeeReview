@@ -79,10 +79,11 @@
             </form>
 
             <!-- assign employee for feedback of another employee -->
-            <form>
+            <form action ="/admin_employee/assign_employee", method="POST">
+
                 <li>
-                    <input id="toEmployeeEmail" type="text", name="toEmployeeEmail" , placeholder="Enter To Employee Email">
-                    <input id ="fromEmployeeEmail" type ="text" ,name ="fromEmployeeEmail" , placeholder="Enter From Employee Email"  >
+                    <input id="toEmployee" type="text" name="toEmployeeEmail" placeholder="Enter To Employee Email">
+                    <input id="forEmployee" type="text" name="fromEmployeeEmail" placeholder="Enter For Employee Email">
                     <button id="button">Assign Employee For Feedback</button>
                 </li>
             </form>
