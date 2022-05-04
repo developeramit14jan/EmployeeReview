@@ -20,9 +20,9 @@ const performance = mongoose.Schema({
         type: String,
         require: true
     },
-    employeeId: {
+    employees: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: `Employee`
+        ref: `employee`
     }
 }, { timestamp: true });
 const Performance = mongoose.model('performance', performance);

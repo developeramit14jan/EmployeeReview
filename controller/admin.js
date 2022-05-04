@@ -76,8 +76,21 @@ module.exports.viewEmployee = async function (req, res) {
 //admin performance page
 module.exports.adminPerformancePage = async function(req , res){
     try{
+        const loginAdmin = await Admin.find({email : 'kumar.amit14jan@gmail.com'});
+        // loginAdmin.performa.populate('Performance')
+        // 
+        const performanceArray = loginAdmin[0].performance;
+        const list =[];
+        for(var i = 0 ; i<performanceArray.length ; i++ ){
+            const data =   await Performance.findById(performanceArray[i]).populate('employees');
+            list.push(data);
+        }
+      
+     console.log("Amit",list);
+     console.log(list[0].employees.id)
         return res.render('adminPerformance' , {
-            title : "AdminPerformancePage"
+            title : "AdminPerformancePage",
+            list:list
         })
     }catch(error){
         return res.send("error");

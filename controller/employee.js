@@ -52,14 +52,11 @@ module.exports.performanceReviewList = async function (req, res) {
 
 module.exports.submitFeedback = async function (req, res) {
     try {
-        like = true;
-        // var performancePresent = await Performance.find({ employeeId: req.body.employeeId });
-        // if (!performancePresent) {
         var addPerformance = await Performance(req.body);
         addPerformance.save();
-        console.log("akaka",req.body.employeeId);
+        console.log("akaka",req.body);
         // find employee by id 
-        const employeeById = await Employee.findById(req.body.employeeId);
+        const employeeById = await Employee.findById(req.body.employees);
         // console.log(employeeById);
         employeeById.performances = addPerformance.id;
         await employeeById.save();
@@ -76,6 +73,7 @@ module.exports.submitFeedback = async function (req, res) {
             allAdmin[i].performance.push(addPerformance.id);
             allAdmin[i].save();
         }
+        console.log("Amit")
         return res.redirect('/employee/perfromancelist');
     } catch (error) {
         return res.send("error");

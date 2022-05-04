@@ -13,6 +13,49 @@
     </div>
     <div>
         <h1>List Of Performance Review For Employee : </h1>
+        <table>
+            <tr>
+                <th>SNo :</th>
+                <th>Name :</th>
+                <th>Email :</th>
+                <th>ProblemSolving : </th>
+                <th>teamwork : </th>
+                <th>Communication : </th>
+                <th>AccuracyOfWork :</th>
+                <th>Attendence :</th>
+            </tr>
+
+            <% for(var i=0 ; i< list.length ; i++) { %>
+                <tr>
+                    <td>
+                        <%= i + 1 %>
+                    </td>
+                    <td>
+                        <%=list[i].employees.name %>
+                    </td>
+                    <td>
+                        <%=list[i].employees.email %>
+                    </td>
+                    <td>
+                        <%=list[i].problemSolving %>
+                    </td>
+                    <td>
+                        <%=list[i].teamwork %>
+                    </td>
+                    <td>
+                        <%=list[i].communication %>
+                    </td>
+                    <td>
+                        <%=list[i].accuracyOfWork %>
+                    </td>
+                    <td>
+                        <%=list[i].attendance %>
+                    </td>
+                </tr>
+
+                <% } %>
+        </table>
+
         <h1>Perform Action On Feedback :</h1>
         <ul>
 
@@ -35,8 +78,6 @@
                     <button id="button">Update Feedback</button>
                 </li>
             </form>
-
-
         </ul>
     </div>
 </body>
