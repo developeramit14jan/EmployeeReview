@@ -85,32 +85,12 @@ module.exports.adminPerformancePage = async function(req , res){
             const data =   await Performance.findById(performanceArray[i]).populate('employees');
             list.push(data);
         }
-      
-     console.log("Amit",list);
-     console.log(list[0].employees.id)
         return res.render('adminPerformance' , {
             title : "AdminPerformancePage",
             list:list
         })
     }catch(error){
         return res.send("error");
-    }
-}
-module.exports.addReview = async function (req, res) {
-    try {
-
-        console.log("addReview");
-    } catch (error) {
-        console.log("error");
-    }
-}
-
-
-module.exports.updatePerformance = async function (req, res) {
-    try {
-        console.log("u");
-    } catch (error) {
-        console.log("error");
     }
 }
 

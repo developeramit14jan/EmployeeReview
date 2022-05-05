@@ -73,7 +73,6 @@ module.exports.submitFeedback = async function (req, res) {
             allAdmin[i].performance.push(addPerformance.id);
             allAdmin[i].save();
         }
-        console.log("Amit")
         return res.redirect('/employee/perfromancelist');
     } catch (error) {
         return res.send("error");

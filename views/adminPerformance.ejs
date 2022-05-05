@@ -12,17 +12,17 @@
         <a href="#">Feedback</a>
     </div>
     <div>
-        <h1>List Of Performance Review For Employee : </h1>
+        <h1>Feedback List For Employee : </h1>
         <table>
             <tr>
                 <th>SNo :</th>
-                <th>Name :</th>
-                <th>Email :</th>
-                <th>ProblemSolving : </th>
-                <th>teamwork : </th>
-                <th>Communication : </th>
-                <th>AccuracyOfWork :</th>
-                <th>Attendence :</th>
+                <th>Name </th>
+                <th>Email </th>
+                <th>ProblemSolving  </th>
+                <th>teamwork </th>
+                <th>Communication  </th>
+                <th>AccuracyOfWork </th>
+                <th>Attendence </th>
             </tr>
 
             <% for(var i=0 ; i< list.length ; i++) { %>
@@ -51,34 +51,11 @@
                     <td>
                         <%=list[i].attendance %>
                     </td>
+                    <td><button> <a href="/admin_performance/<%=list[i].employees.id %>">Action</button></td>
                 </tr>
 
                 <% } %>
         </table>
-
-        <h1>Perform Action On Feedback :</h1>
-        <ul>
-
-            <form action="" , method="POST">
-                <li>
-                    <input id="name" type="text" name="name" placeholder="Enter The Name">
-                    <input id="email" type="text" name="email" placeholder="Enter The Email">
-                    <input id="password" type="text" name="password" placeholder="Enter The Password">
-                    <button id="button">Add Feedback</button>
-                </li>
-            </form>
-
-            <!-- update -->
-
-            <form action="" , method="POST">
-                <li>
-                    <input id="name" type="text" name="name" placeholder="Enter The Name">
-                    <input id="email" type="text" name="email" placeholder="Enter The Email">
-                    <input id="password" type="text" name="password" placeholder="Enter The Password">
-                    <button id="button">Update Feedback</button>
-                </li>
-            </form>
-        </ul>
     </div>
 </body>
 
