@@ -1,11 +1,3 @@
-<html>
-
-<head>
-    <title>
-        <%= title%>
-    </title>
-</head>
-
 <body>
     <div class="nav">
         <a href="/admin_employee/employee_dashboard">Home</a>
@@ -18,45 +10,42 @@
                 <th>SNo :</th>
                 <th>Name </th>
                 <th>Email </th>
-                <th>ProblemSolving  </th>
+                <th>ProblemSolving </th>
                 <th>teamwork </th>
-                <th>Communication  </th>
+                <th>Communication </th>
                 <th>AccuracyOfWork </th>
                 <th>Attendence </th>
             </tr>
-
+            <!-- <%=list %> -->
             <% for(var i=0 ; i< list.length ; i++) { %>
-                <tr>
-                    <td>
-                        <%= i + 1 %>
-                    </td>
-                    <td>
-                        <%=list[i].employees.name %>
-                    </td>
-                    <td>
-                        <%=list[i].employees.email %>
-                    </td>
-                    <td>
-                        <%=list[i].problemSolving %>
-                    </td>
-                    <td>
-                        <%=list[i].teamwork %>
-                    </td>
-                    <td>
-                        <%=list[i].communication %>
-                    </td>
-                    <td>
-                        <%=list[i].accuracyOfWork %>
-                    </td>
-                    <td>
-                        <%=list[i].attendance %>
-                    </td>
-                    <td><button> <a href="/admin_performance/<%=list[i].employees.id %>">Action</button></td>
-                </tr>
+                <td>
+                    <%= i + 1 %>
+                </td>
+                <td>
+                    <%=list[i].employees.name %>
+                </td>
+                <td>
+                    <%=list[i].employees.email %>
+                </td>
+                <td>
+                    <%=list[i].problemSolving %>
+                </td>
+                <td>
+                    <%=list[i].teamwork %>
+                </td>
+                <td>
+                    <%=list[i].communication %>
+                </td>
+                <td>
+                    <%=list[i].accuracyOfWork %>
+                </td>
+                <td>
+                    <%=list[i].attendance %>
+                </td>
+                <td><button> <a href="/admin_performance/<%=list[i].employees.id %>">Action</button></td>
 
                 <% } %>
+
         </table>
     </div>
 </body>
-
-</html>

@@ -1,7 +1,7 @@
 const Employee = require('../models/employee');
 const Admin = require('../models/admin');
 module.exports.welcome = async function (req, res) {
-    res.render('login', {
+    res.render('signIn', {
         title: "Sign In"
     });
 }
@@ -34,12 +34,12 @@ module.exports.LoginEmployee = async function (req, res) {
 }
 
 
-// to register admin
+// make employee as  admin
 module.exports.registerAdmin = async function (req , res){
     try{
         const registerAdmin = new Admin(req.body);
         const register = await registerAdmin.save();
-        return res.send(register);
+        return res.redirect('/admin_employee/employee_dashboard');
     }catch(error){
         return res.send("error");
     }

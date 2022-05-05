@@ -1,9 +1,11 @@
 const express = require('express');
 const port = 8000 || process.env.PORT;
+const expressLayouts = require('express-ejs-layouts');
 const app = express();
 app.set('view engine' , 'ejs');
 app.set('views' , './views')
 const db = require('./config/mongoose');
+app.use(expressLayouts);
 app.use(express.urlencoded({extended :true}));
 app.use('/', require('./routes/index'));
 app.listen(port, function (error) {

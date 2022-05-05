@@ -13,6 +13,14 @@ const employee = new mongoose.Schema(
             type: String,
             require: true
         },
+        mobile:{
+            type:String,
+            require : true
+        },
+        city :{
+            type:String,
+            require : true
+        },
         role: {
             type: String,
             enum: ['employee', 'admin'],

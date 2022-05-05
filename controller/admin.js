@@ -94,13 +94,6 @@ module.exports.adminPerformancePage = async function(req , res){
     }
 }
 
-module.exports.viewPerformance = async function (req, res) {
-    try {
-        console.log("view performance");
-    } catch (error) {
-        console.log("error");
-    }
-}
 
 // assign employee to participate in feedback
 module.exports.assignEmployee = async function (req, res) {

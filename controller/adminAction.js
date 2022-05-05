@@ -1,6 +1,7 @@
 const Performance = require('../models/performance');
 const Employee = require('../models/employee');
 const Admin = require('../models/admin');
+const { findOne, findOneAndUpdate } = require('../models/performance');
 module.exports.adminPerformanceAddPage = async function(req , res){
     return res.render('adminPerformanceAction' , {
         title : "Add & Update Feedback",
@@ -30,12 +31,18 @@ module.exports.addReview = async  function (req, res) {
 }
 
 
- 
+module.exports.updateFeedback = async function(req , res){
+    try{
+        const updatePerformance = await Performance.findOne({employees : req.body.employees});
+        updatePerformance.problemSolving = req.body.problemSolving;
+        updatePerformance.teamwork = req.body.teamwork;
+        updatePerformance.communication = req.body.communication;
+        updatePerformance.accuracyOfWork = req.body.accuracyOfWork;
+        updatePerformance.attendance = req.body.attendance;
+        await updatePerformance.save();
+        return res.redirect('/admin_performance/dashBoard');
+    }catch(error){
+        return res.send("error");
+    }
+}
 
-// module.exports.updatePerformance = async function (req, res) {
-//     try {
-//         console.log("u");
-//     } catch (error) {
-//         console.log("error");
-//     }
-// }

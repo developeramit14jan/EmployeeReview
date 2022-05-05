@@ -1,11 +1,3 @@
-<html>
-
-<head>
-    <title>
-        <%= title%>
-    </title>
-</head>
-
 <body>
     <div>
         <div>
@@ -22,7 +14,7 @@
         </div>
         <div>
             <h1>Update Feedback :</h1>
-            <form action="/admin_performance/add_review" , method="POST">
+            <form action="/admin_performance/update_feedback" , method="POST">
                 <input type="hidden" , name="employees" value="<%= id%>">
                 <input type="text" , name="problemSolving" placeholder="Enter The Communication Details"><br><br>
                 <input type="text" , name="teamwork" placeholder="Enter Details About Teamwork"><br><br>
@@ -35,5 +27,3 @@
     </div>
     </div>
 </body>
-
-</html>

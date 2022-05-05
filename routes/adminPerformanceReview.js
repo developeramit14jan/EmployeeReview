@@ -5,4 +5,5 @@ const adminAction = require('../controller/adminAction');
 router.get('/dashBoard' , admin.adminPerformancePage);
 router.get('/:id', adminAction.adminPerformanceAddPage);
 router.post('/add_review' , adminAction.addReview);
+router.post('/update_feedback', adminAction.updateFeedback);
 module.exports = router;
