@@ -1,0 +1,16 @@
+body{
+    margin-top: 5%;
+}
+table{
+    width:70%;
+    border-collapse: collapse;
+}
+th,td{
+    text-align: left;
+    border: 1px solid lightgrey;
+    padding: 8px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}

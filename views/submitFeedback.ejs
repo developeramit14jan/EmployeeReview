@@ -1,14 +1,13 @@
-<body>
-    <div id="submitFeedBack">
-        <h1>Submit feedback : </h1>
-        <form action="/employee/feedback" , method="POST">
-            <input type="text" , name="problemSolving" placeholder="Enter The Communication Details"><br><br>
-            <input type="text" , name="teamwork" placeholder="Enter Details About Teamwork"><br><br>
-            <input type="text" , name="communication" placeholder="Enter Communication Details"><br><br>
-            <input type="text" , name="accuracyOfWork" placeholder="Enter About Accuracy"><br><br>
-            <input type="hidden" , name="employees" value="<%= id%>">
-            <input type="text" , name="attendance" placeholder="Enter Attendance"><br><br>
-            <button>submit</button>
-        </form>
-    </div>
-</body>
+<link rel="stylesheet" href="/css/submitFeedback.css">
+<div id="submitFeedBack">
+    <h1>Submit feedback : </h1>
+    <form action="/employee/feedback" , method="POST">
+        <input type="text" , name="problemSolving" placeholder="Enter The Communication Details"><br><br>
+        <input type="text" , name="teamwork" placeholder="Enter Details About Teamwork"><br><br>
+        <input type="text" , name="communication" placeholder="Enter Communication Details"><br><br>
+        <input type="text" , name="accuracyOfWork" placeholder="Enter About Accuracy"><br><br>
+        <input type="hidden" , name="employees" value="<%= id%>">
+        <input type="text" , name="attendance" placeholder="Enter Attendance"><br><br>
+        <button id="button">submit</button>
+    </form>
+</div>

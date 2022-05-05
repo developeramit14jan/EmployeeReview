@@ -6,6 +6,8 @@ app.set('view engine' , 'ejs');
 app.set('views' , './views')
 const db = require('./config/mongoose');
 app.use(expressLayouts);
+//now tell the app to use  static files
+app.use(express.static('./assets'));
 app.use(express.urlencoded({extended :true}));
 app.use('/', require('./routes/index'));
 app.listen(port, function (error) {

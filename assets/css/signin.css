@@ -1,0 +1,16 @@
+body{
+    text-align: center;
+    margin-top: 10%;
+}
+
+#email, #password, #role{
+    padding: 5px;
+    margin: 4px;
+    font-size: 15px;
+    width: 25%;
+
+}
+#button{
+    padding: 3px;
+    width: 10%;
+}
