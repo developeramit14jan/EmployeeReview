@@ -1,28 +1,28 @@
-
-    <div>
-        <div>
-            <h1>Add Feedback :</h1>
-            <form action="/admin_performance/add_review" , method="POST">
-                <input type="hidden" , name="employees" value="<%= id%>">
-                <input type="text" , name="problemSolving" placeholder="Enter The Communication Details"><br><br>
-                <input type="text" , name="teamwork" placeholder="Enter Details About Teamwork"><br><br>
-                <input type="text" , name="communication" placeholder="Enter Communication Details"><br><br>
-                <input type="text" , name="accuracyOfWork" placeholder="Enter About Accuracy"><br><br>
-                <input type="text" , name="attendance" placeholder="Enter Attendance"><br><br>
-                <button id="button">Add Feedback</button>
-            </form>
-        </div>
-        <div>
-            <h1>Update Feedback :</h1>
-            <form action="/admin_performance/update_feedback" , method="POST">
-                <input type="hidden" , name="employees" value="<%= id%>">
-                <input type="text" , name="problemSolving" placeholder="Enter The Communication Details"><br><br>
-                <input type="text" , name="teamwork" placeholder="Enter Details About Teamwork"><br><br>
-                <input type="text" , name="communication" placeholder="Enter Communication Details"><br><br>
-                <input type="text" , name="accuracyOfWork" placeholder="Enter About Accuracy"><br><br>
-                <input type="text" , name="attendance" placeholder="Enter Attendance"><br><br>
-                <button id="button">update Feedback</button>
-            </form>
-        </div>
+<link rel="stylesheet" href="/css/adminPerformanceAction.css">
+<div id="actionData">
+    <div id="addfeedback">
+        <h1>Add Feedback :</h1>
+        <form action="/admin_performance/add_review" , method="POST">
+            <input type="hidden" , name="employees" value="<%= id%>">
+            <input type="text" , name="problemSolving" placeholder="Enter The Communication Details"><br><br>
+            <input type="text" , name="teamwork" placeholder="Enter Details About Teamwork"><br><br>
+            <input type="text" , name="communication" placeholder="Enter Communication Details"><br><br>
+            <input type="text" , name="accuracyOfWork" placeholder="Enter About Accuracy"><br><br>
+            <input type="text" , name="attendance" placeholder="Enter Attendance"><br><br>
+            <button id="button">Add Feedback</button>
+        </form>
     </div>
+    <div id="updateFeedback">
+        <h1>Update Feedback :</h1>
+        <form action="/admin_performance/update_feedback" , method="POST">
+            <input type="hidden" , name="employees" value="<%= id%>">
+            <input type="text" , name="problemSolving" placeholder="Enter The Communication Details"><br><br>
+            <input type="text" , name="teamwork" placeholder="Enter Details About Teamwork"><br><br>
+            <input type="text" , name="communication" placeholder="Enter Communication Details"><br><br>
+            <input type="text" , name="accuracyOfWork" placeholder="Enter About Accuracy"><br><br>
+            <input type="text" , name="attendance" placeholder="Enter Attendance"><br><br>
+            <button id="button">update Feedback</button>
+        </form>
     </div>
+</div>
+</div>

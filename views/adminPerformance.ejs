@@ -1,51 +1,51 @@
-<body>
-    <div class="nav">
-        <a href="/admin_employee/employee_dashboard">Home</a>
-        <a href="#">Feedback</a>
-    </div>
-    <div>
-        <h1>Feedback List For Employee : </h1>
-        <table>
-            <tr>
-                <th>SNo :</th>
-                <th>Name </th>
-                <th>Email </th>
-                <th>ProblemSolving </th>
-                <th>teamwork </th>
-                <th>Communication </th>
-                <th>AccuracyOfWork </th>
-                <th>Attendence </th>
-            </tr>
-            <!-- <%=list %> -->
-            <% for(var i=0 ; i< list.length ; i++) { %>
-                <td>
-                    <%= i + 1 %>
-                </td>
-                <td>
-                    <%=list[i].employees.name %>
-                </td>
-                <td>
-                    <%=list[i].employees.email %>
-                </td>
-                <td>
-                    <%=list[i].problemSolving %>
-                </td>
-                <td>
-                    <%=list[i].teamwork %>
-                </td>
-                <td>
-                    <%=list[i].communication %>
-                </td>
-                <td>
-                    <%=list[i].accuracyOfWork %>
-                </td>
-                <td>
-                    <%=list[i].attendance %>
-                </td>
-                <td><button> <a href="/admin_performance/<%=list[i].employees.id %>">Action</button></td>
+<link rel="stylesheet" href="/css/adminPerformance.css">
+<div class="nav">
+    <a href="/admin_employee/employee_dashboard">Home</a>
+    <a href="#">Feedback</a>
+</div>
+<div>
+    <h1>Feedback List For Employee : </h1>
+    <table>
+        <tr>
+            <th>SNo </th>
+            <th>Name </th>
+            <th>Email </th>
+            <th>ProblemSolving </th>
+            <th>Teamwork </th>
+            <th>Communication </th>
+            <th>Accuracy Of Work </th>
+            <th>Attendence </th>
+            <th>Action Tab</th>
+        </tr>
+        <!-- <%=list %> -->
+        <% for(var i=0 ; i< list.length ; i++) { %>
+            <td>
+                <%= i + 1 %>
+            </td>
+            <td>
+                <%=list[i].employees.name %>
+            </td>
+            <td>
+                <%=list[i].employees.email %>
+            </td>
+            <td>
+                <%=list[i].problemSolving %>
+            </td>
+            <td>
+                <%=list[i].teamwork %>
+            </td>
+            <td>
+                <%=list[i].communication %>
+            </td>
+            <td>
+                <%=list[i].accuracyOfWork %>
+            </td>
+            <td>
+                <%=list[i].attendance %>
+            </td>
+            <td><button> <a href="/admin_performance/<%=list[i].employees.id %>">Action</button></td>
 
-                <% } %>
+            <% } %>
 
-        </table>
-    </div>
-</body>
+    </table>
+</div>

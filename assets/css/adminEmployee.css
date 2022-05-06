@@ -1,4 +1,3 @@
-/* design navigation bar */
 .nav{
     margin-top: -5px;
     padding: 8px;
@@ -11,6 +10,7 @@
       color: aliceblue;
       padding: 8px;
   }
+
 table{
     width:70%;
     border-collapse: collapse;
@@ -23,4 +23,19 @@ th,td{
 a{
     text-decoration: none;
     color: black;
+}
+ul{
+    padding: 4px;
+    margin: 5px;
+    list-style-type: none;
+}
+
+input{
+    padding: 5px;
+    margin: 4px;
+    font-size: 15px;
+    width: 20%;
+}
+button{
+    padding: 5px;
 }
