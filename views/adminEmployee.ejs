@@ -1,106 +1,100 @@
-<body>
-    <link rel="stylesheet" href="/css/adminEmployee.css">
-    <div class="nav">
-        <a class="active" href="#">Home</a>
-        <a href="/admin_performance/dashBoard">Feedback</a>
-    </div>
-    <section>
+<link rel="stylesheet" href="/css/adminEmployee.css">
+<div class="nav">
+    <a class="active" href="#">Home</a>
+    <a href="/admin_performance/dashBoard">Feedback</a>
+</div>
+<section>
 
-        <div id="employeeData">
-            <h1>List Of Employee : </h1>
-            <table>
+    <div id="employeeData">
+        <h1>List Of Employee : </h1>
+        <table>
+            <tr>
+                <th>SNo: </th>
+                <th>Name </th>
+                <th>Email </th>
+                <th>Mobile No</th>
+                <th>City</th>
+                <th>Password </th>
+            </tr>
+
+            <% for(var i=0; i<allEmployee.length; i++) {%>
                 <tr>
-                    <th>SNo: </th>
-                    <th>Name </th>
-                    <th>Email </th>
-                    <th>Mobile No</th>
-                    <th>City</th>
-                    <th>Password </th>
+                    <td>
+                        <%= i+1 %>
+                    </td>
+                    <td>
+                        <%= allEmployee[i].name %>
+                    </td>
+                    <td>
+                        <%= allEmployee[i].email %>
+                    </td>
+                    <td>
+                        <%= allEmployee[i].mobile%>
+                    </td>
+                    <td>
+                        <%= allEmployee[i].city%>
+                    </td>
+                    <td>
+                        <%= allEmployee[i].password%>
+                    </td>
+
                 </tr>
-
-                <% for(var i=0; i<allEmployee.length; i++) {%>
-                    <tr>
-                        <td>
-                            <%= i+1 %>
-                        </td>
-                        <td>
-                            <%= allEmployee[i].name %>
-                        </td>
-                        <td>
-                            <%= allEmployee[i].email %>
-                        </td>
-                        <td>
-                            <%= allEmployee[i].mobile%>
-                        </td>
-                        <td>
-                            <%= allEmployee[i].city%>
-                        </td>
-                        <td>
-                            <%= allEmployee[i].password%>
-                        </td>
-
+                <% } %>
                     </tr>
-                    <% } %>
-                        </tr>
-            </table>
-        </div>
-    </section>
+        </table>
+    </div>
+</section>
 
-    <section>
-        <h1>Perform Action On Employee :</h1>
-        <ul>
+<section>
+    <h1>Perform Action On Employee :</h1>
+    <ul>
 
-            <form action="/admin_employee/add_employee" , method="POST">
-                <li>
-                    <input id="name" type="text" name="name" placeholder="Enter The Name">
-                    <input id="email" type="text" name="email" placeholder="Enter The Email">
-                    <input id="password" type="text" name="password" placeholder="Enter The Password">
-                    <button id="button">Add Employee</button>
-                </li>
-            </form>
-            <!-- delete -->
-            <form action="/admin_employee/delete_employee" , method="POST">
-                <li>
-                    <input id="name" type="text" name="name" placeholder="Enter The Name">
-                    <input id="email" type="text" name="email" placeholder="Enter The Email">
-                    <input id="password" type="text" name="password" placeholder="Enter The Password">
-                    <button id="button">Delete Employee</button>
-                </li>
-            </form>
-            <!-- update -->
+        <form action="/admin_employee/add_employee" , method="POST">
+            <li>
+                <input id="name" type="text" name="name" placeholder="Enter The Name">
+                <input id="email" type="text" name="email" placeholder="Enter The Email">
+                <input id="password" type="text" name="password" placeholder="Enter The Password">
+                <button id="button">Add Employee</button>
+            </li>
+        </form>
+        <!-- delete -->
+        <form action="/admin_employee/delete_employee" , method="POST">
+            <li>
+                <input id="name" type="text" name="name" placeholder="Enter The Name">
+                <input id="email" type="text" name="email" placeholder="Enter The Email">
+                <input id="password" type="text" name="password" placeholder="Enter The Password">
+                <button id="button">Delete Employee</button>
+            </li>
+        </form>
+        <!-- update -->
 
-            <form action="/admin_employee/update_employee" , method="POST">
-                <li>
-                    <input id="name" type="text" name="name" placeholder="Enter The Name">
-                    <input id="email" type="text" name="email" placeholder="Enter The Email">
-                    <input id="password" type="text" name="password" placeholder="Enter The Password">
-                    <button id="button">Update Employee</button>
-                </li>
-            </form>
+        <form action="/admin_employee/update_employee" , method="POST">
+            <li>
+                <input id="name" type="text" name="name" placeholder="Enter The Name">
+                <input id="email" type="text" name="email" placeholder="Enter The Email">
+                <input id="password" type="text" name="password" placeholder="Enter The Password">
+                <button id="button">Update Employee</button>
+            </li>
+        </form>
 
-            <!-- assign employee for feedback of another employee -->
-            <form action="/admin_employee/assign_employee" , method="POST">
+        <!-- assign employee for feedback of another employee -->
+        <form action="/admin_employee/assign_employee" , method="POST">
 
-                <li>
-                    <input id="toEmployee" type="text" name="toEmployeeEmail" placeholder="Enter To Employee Email">
-                    <input id="forEmployee" type="text" name="fromEmployeeEmail" placeholder="Enter For Employee Email">
-                    <button id="button">Assign Feedback</button>
-                </li>
-            </form>
+            <li>
+                <input id="toEmployee" type="text" name="toEmployeeEmail" placeholder="Enter To Employee Email">
+                <input id="forEmployee" type="text" name="fromEmployeeEmail" placeholder="Enter For Employee Email">
+                <button id="button">Assign Feedback</button>
+            </li>
+        </form>
 
-            <form action="/assign_admin" , method="POST">
-                <li>
-                    <input id="email" type="text" name="email" placeholder="Enter The Employee Email">
-                    <input id="password" type="text" name="passowrd" placeholder="Enter The Password">
-                    <button id="button">Make Admin</button>
-                </li>
-            </form>
+        <form action="/assign_admin" , method="POST">
+            <li>
+                <input id="email" type="text" name="email" placeholder="Enter The Employee Email">
+                <input id="password" type="text" name="passowrd" placeholder="Enter The Password">
+                <button id="button">Make Admin</button>
+            </li>
+        </form>
 
 
-        </ul>
-    </section>
-
-
-
-
-</body>
+    </ul>
+</section>

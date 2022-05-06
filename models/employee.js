@@ -32,7 +32,11 @@ const employee = new mongoose.Schema(
         },
         feedback :[{
             type : String
-        }]
+        }],
+        like:{
+            type:Boolean,
+            default:false
+        }
     }, { timestamps: true }
 );
 const Employee = mongoose.model('employee', employee);

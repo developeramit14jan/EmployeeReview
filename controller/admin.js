@@ -16,9 +16,7 @@ module.exports.addEmployee = async function (req, res) {
         } else {
             const employee = new Employee(req.body);
             const employeeRegister = await employee.save();
-            // return res.send(employeeRegister);
             return res.redirect('/admin_employee/employee_dashboard');
-
         }
     } catch (error) {
         return res.send("Error in adding employee by admin");
@@ -47,38 +45,16 @@ module.exports.updateEmployee = async function (req, res) {
     try {
         console.log("update employee");
         var updatedEmployee = await Employee.findOneAndUpdate(req.body);
-        // return res.send(updatedEmployee);
         return res.redirect('/admin_employee/employee_dashboard');
     } catch (error) {
         return res.send("Error in updating Employee !!");
     }
 }
 
-module.exports.viewEmployee = async function (req, res) {
-    try {
-        // here we have to pass id \
-        var viewEmployee = await Employee.findOne(req.body);
-        if (!viewEmployee) {
-            return res.send("employee Not find !!");
-        } else {
-            return res.send(viewEmployee);
-        }
-    } catch (error) {
-        return res.send("error in finding employee");
-    }
-}
-
-
-// for performance review
-
-
-
 //admin performance page
 module.exports.adminPerformancePage = async function(req , res){
     try{
-        const loginAdmin = await Admin.find({email : 'kumar.amit14jan@gmail.com'});
-        // loginAdmin.performa.populate('Performance')
-        // 
+        const loginAdmin = await Admin.find({});
         const performanceArray = loginAdmin[0].performance;
         const list =[];
         for(var i = 0 ; i<performanceArray.length ; i++ ){
@@ -104,6 +80,6 @@ module.exports.assignEmployee = async function (req, res) {
         await assignFeedback[0].save();
         return res.redirect('back');
     } catch (error) {
-        return res.send("error");
+        return res.send("Error while Assigning Employee");
     }
 }

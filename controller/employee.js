@@ -28,12 +28,17 @@ module.exports.register = async function (req, res) {
 }
 module.exports.performanceReviewList = async function (req, res) {
     try {
-        var allEmployee = await Employee.find({});
-
-        var like = false;
+        var allEmployee = await Employee.find({ email: "amit14@gmail.com" });
+        var feedback = allEmployee[0].feedback;
+        // console.log(allEmployee.like)
+        var list = [];
+        for (var i = 0; i < feedback.length; i++) {
+            const data = await Employee.findById(feedback[i]).populate();
+            list.push(data);
+        }
         res.render('employeeDashboard', {
             title: "Employee",
-            allEmployee: allEmployee
+            allEmployee: list
         });
     } catch (error) {
         return res.send("error in sending data");
@@ -49,6 +54,7 @@ module.exports.submitFeedback = async function (req, res) {
         console.log("akaka", req.body);
         // find employee by id 
         const employeeById = await Employee.findById(req.body.employees);
+        employeeById.like = true;
         // console.log(employeeById);
         employeeById.performances = addPerformance.id;
         await employeeById.save();
