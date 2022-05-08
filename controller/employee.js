@@ -1,5 +1,7 @@
 const Employee = require('../models/employee');
 const Admin = require('../models/admin');
+const jwt = require('jsonwebtoken')
+const env = require('../config/environment');
 const Performance = require('../models/performance');
 module.exports.signup = async function (req, res) {
     res.render('signUp', {
@@ -28,14 +30,15 @@ module.exports.register = async function (req, res) {
 }
 module.exports.performanceReviewList = async function (req, res) {
     try {
-        var allEmployee = await Employee.find({ email: "amit14@gmail.com" });
+        const token =req.cookies.employee_email;
+        var allEmployee = await Employee.find({ email: jwt.verify(token ,env.secret_key) });
         var feedback = allEmployee[0].feedback;
-        // console.log(allEmployee.like)
         var list = [];
         for (var i = 0; i < feedback.length; i++) {
             const data = await Employee.findById(feedback[i]).populate();
             list.push(data);
         }
+        // console.log(list)
         res.render('employeeDashboard', {
             title: "Employee",
             allEmployee: list
