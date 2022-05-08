@@ -1,7 +1,6 @@
 const Performance = require('../models/performance');
 const Employee = require('../models/employee');
-const Admin = require('../models/admin');
-const { findOne, findOneAndUpdate } = require('../models/performance');
+const Admin = require('../models/admin')
 module.exports.adminPerformanceAddPage = async function(req , res){
     return res.render('adminPerformanceAction' , {
         title : "Add & Update Feedback",

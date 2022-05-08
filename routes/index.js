@@ -3,8 +3,8 @@ const router = express.Router();
 const passport = require('passport');
 const index = require('../controller/index');
 router.get('/', index.welcome);
-router.post('/login' , index.LoginEmployee);
-// router.post('/login' ,passport.authenticate('local',{failureRedirect:'/'}), index.LoginEmployee);
+// router.post('/login' , index.LoginEmployee);
+router.post('/login' ,passport.authenticate('local',{failureRedirect:'/'}), index.LoginEmployee);
 router.post('/assign_admin', index.registerAdmin);// to be deleted
 router.use('/employee' , require('./employee'));
 router.use('/admin_employee' ,require('./adminEmployee'));
