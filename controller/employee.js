@@ -81,6 +81,6 @@ module.exports.feedbackPage = async function (req, res) {
             id: req.params.id
         });
     } catch (error) {
-        return res.flash('error', 'Error on Feedback!!');
+        return res.send('Error on Feedback!!');
     }
 }

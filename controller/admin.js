@@ -18,6 +18,7 @@ module.exports.addEmployee = async function (req, res) {
         } else {
             const addemployee = new Employee(req.body);
             await addemployee.save();
+            
             req.flash('success', 'Employee added successfully !!');
             return res.redirect('/admin_employee/employee_dashboard');
         }
@@ -59,7 +60,6 @@ module.exports.updateEmployee = async function (req, res) {
         req.flash('success', 'Updated Success fully !!');
         return res.redirect('/admin_employee/employee_dashboard');
     } catch (error) {
-        req.flash('error', 'Error while Updating !!');
         return res.send("Error in updating Employee !!");
     }
 }
@@ -93,7 +93,7 @@ module.exports.assignEmployee = async function (req, res) {
     try {
         const forEmployee = await Employee.find({ email: req.body.fromEmployeeEmail });
         const assignFeedback = await Employee.find({ email: req.body.toEmployeeEmail });
-        var index = assignFeedback[0].indexOf(forEmployee[0]._id.toString());
+        var index = assignFeedback[0].feedback.indexOf(forEmployee[0]._id.toString());
         if (index == -1) {
             assignFeedback[0].feedback.push(forEmployee[0]._id.toString());
             await assignFeedback[0].save();

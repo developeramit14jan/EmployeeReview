@@ -18,7 +18,7 @@ app.use(expressLayouts);
 
 app.use(session({
     name: 'employeereview',
-    secret: 'employeereview',
+    secret: env.secret_key,
     saveUninitialized: false,
     resave: false,
     cookie: {
