@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const admin = mongoose.Schema({
+const admin = new mongoose.Schema ({
     email: {
         type: String,
         require: true

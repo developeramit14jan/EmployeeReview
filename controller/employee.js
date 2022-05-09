@@ -3,9 +3,9 @@ const Admin = require('../models/admin');
 const env = require('../config/environment');
 const Performance = require('../models/performance');
 module.exports.signup = async function (req, res) {
-    if(req.isAuthenticated()){
-        return res.redirect('/employee/perfromancelist');
-    }
+    // if(req.isAuthenticated()){
+    //     return res.redirect('/employee/perfromancelist');
+    // }
     res.render('signUp', {
         title: "Sign Up"
     });
@@ -15,6 +15,7 @@ module.exports.register = async function (req, res) {
     try {
         var presentEmployee = await Employee.find({ email: req.body.email });
         if (presentEmployee.email === req.body.email) {
+            req.flash('error', 'Email id Already registered !');
             return res.redirect('/');
         } else {
             const registerEmployee = new Employee(req.body);
@@ -24,19 +25,20 @@ module.exports.register = async function (req, res) {
                 allAdmin[i].employeeId.push(resistered.id);
                 allAdmin[i].save();
             }
+            req.flash('success', 'SignUp successfully');
             return res.redirect('/');
         }
     } catch (error) {
-        return res.send(error);
+        return req.flash('error', 'Error in SignUp !!');
     }
 }
 module.exports.performanceReviewList = async function (req, res) {
     try {
-        var allEmployee = await Employee.findById(req.cookies.id);
+        var allEmployee = await Employee.findOne({email :req.cookies.id});
         var feedback = allEmployee.feedback;
         var list = [];
         for (var i = 0; i < feedback.length; i++) {
-            const data = await Employee.findById(feedback[i]).populate();
+            const data = await Employee.findById(feedback[i]);
             list.push(data);
         }
         res.render('employeeDashboard', {
@@ -44,7 +46,7 @@ module.exports.performanceReviewList = async function (req, res) {
             allEmployee: list
         });
     } catch (error) {
-        return res.send("error in sending data");
+        return res.flash('error', "Error in sendiding data to Employee Dashboard !!");
     }
 }
 
@@ -54,26 +56,17 @@ module.exports.submitFeedback = async function (req, res) {
     try {
         var addPerformance = await Performance(req.body);
         addPerformance.save();
-        console.log("akaka", req.body);
         // find employee by id 
         const employeeById = await Employee.findById(req.body.employees);
         employeeById.like = true;
-        // console.log(employeeById);
         employeeById.performances = addPerformance.id;
         await employeeById.save();
-        // console.log(employeeById);
-        // const data = employeeById.populate('');
-        // console.log("problem");
-        //    const data =  await employeeById.populate('performances');
-
-        //     console.log(data);
         const allAdmin = await Admin.find({});
-        console.log(addPerformance._id);
-        // console.log(allAdmin);
         for (var i = 0; i < allAdmin.length; i++) {
             allAdmin[i].performance.push(addPerformance.id);
             allAdmin[i].save();
         }
+        req.flash('success', 'Feedback Submitted Successfully !!');
         return res.redirect('/employee/perfromancelist');
     } catch (error) {
         return res.send("error");

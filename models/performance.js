@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const performance = mongoose.Schema({
+const performance = new mongoose.Schema({
     problemSolving: {
         type: String,
         require: true

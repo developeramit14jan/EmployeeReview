@@ -8,17 +8,19 @@ let passportCallback = async function (req, email, password, done) {
     //find user and establish identity..
     try {
         if (req.body.role === "employee") {
-            let loginEmployee = await Employee.findOne({ email: email })
-            console.log(loginEmployee);
+            let loginEmployee = await Employee.findOne({ email: email });
             if (!loginEmployee || loginEmployee.password != password) {
+                req.flash('error' , 'Invalid username & password !!');
                 return done(null, false);
             }
             return done(null, loginEmployee);
         }else{
             let loginAdmin = await Admin.findOne({email : email});
             if(!loginAdmin || loginAdmin.password != password){
+                req.flash('error' , 'Invalid username & password !!');
                 return done(null , false);
             }
+            
             return done(null , loginAdmin);
         }
     }
@@ -27,10 +29,6 @@ let passportCallback = async function (req, email, password, done) {
         return done(err);
     }
 }
-// passport.use(new LocalStrategy({
-//     usernameField: 'email',
-//     passReqToCallback: true
-//     }, passportCallback));
 passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, passportCallback));
 passport.serializeUser(function ( loginUser, done) {
     done(null, loginUser);
@@ -54,16 +52,10 @@ let deserializeCallback = async function ( loginUser, done) {
 passport.deserializeUser(deserializeCallback);
 passport.checkAuthentication = function (req, res, next){
     if(req.isAuthenticated()){
-        console.log(req.user)
+        // req.user contains user details
         return next();
     }
     return res.redirect('/');
 }
 
-passport.setAuthenticatedUser = function(req ,res , next){
-    if(req.isAuthenticated()){
-        res.cookie('id',req.user.id ,{ expires: new Date(new Date().getTime()+5*60*1000), httpOnly: true } );
-    }
-    next();
-}
 module.exports = passport;
