@@ -93,9 +93,13 @@ module.exports.assignEmployee = async function (req, res) {
     try {
         const forEmployee = await Employee.find({ email: req.body.fromEmployeeEmail });
         const assignFeedback = await Employee.find({ email: req.body.toEmployeeEmail });
-        assignFeedback[0].feedback.push(forEmployee[0]._id.toString());
-        await assignFeedback[0].save();
-        req.flash('success', 'Employee Assign Success fully !!');
+        var index = assignFeedback[0].indexOf(forEmployee[0]._id.toString());
+        if (index == -1) {
+            assignFeedback[0].feedback.push(forEmployee[0]._id.toString());
+            await assignFeedback[0].save();
+            req.flash('success', 'Employee Assign Success fully !!');
+        }
+        req.flash('error', 'Employee Assign Already !!');
         return res.redirect('back');
     } catch (error) {
         return res.send("Error while Assigning Employee");

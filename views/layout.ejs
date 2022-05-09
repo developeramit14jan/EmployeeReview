@@ -4,22 +4,34 @@
     <title>
         <%= title%>
     </title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" />
+    <script rel="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
     <link rel="stylesheet" href="/css/layout.css">
 </head>
 
 <body>
-    <% if(flash.success && flash.success.length> 0) { %>
-        <h5>
-            <%= flash.success %>
-        </h5>
-        <% } %>
-            <% if(flash.error) { %>
-                <h5>
-                    <%= flash.error %>
-                </h5>
-                <% }%>
 
-                    <%- body %>
+    <%- body %>
+        <script>
+           <% if (flash.success && flash.success.length > 0) {%>
+                new Noty({
+                    then: 'relax',
+                    text: "<%= flash.success %>",
+                    type: 'success',
+                    layout: 'topRight',
+                    timeout: 1500
+                }).show()
+                <% } %>
+                <% if (flash.error && flash.error.length > 0) {%>
+                new Noty({
+                    then: 'relax',
+                    text: "<%= flash.error %>",
+                    type: 'error',
+                    layout: 'topRight',
+                    timeout: 1500
+                }).show()
+                <% } %>
+        </script>
 
 </body>
 

@@ -1,5 +1,6 @@
 const Employee = require('../models/employee');
 const Admin = require('../models/admin');
+// this is welcome page
 module.exports.welcome = async function (req, res) {
     res.render('signIn', {
         title: "Sign In"
@@ -37,4 +38,11 @@ module.exports.registerAdmin = async function (req, res) {
     } catch (error) {
         return res.send("Error during registation of admin !!");
     }
+}
+
+// destroy session
+module.exports.destroySession = async function(req , res){
+    req.logout();
+    req.flash('success' , "Sign Out SuccessFully !!");
+    return res.redirect('/');
 }

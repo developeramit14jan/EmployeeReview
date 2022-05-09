@@ -1,14 +1,14 @@
 const Employee = require('../models/employee');
 const Admin = require('../models/admin');
 const Performance = require('../models/performance');
-module.exports.adminPerformanceAddPage = async function(req , res){
-    return res.render('adminPerformanceAction' , {
-        title : "Add & Update Feedback",
-        id : req.params.id
+module.exports.adminPerformanceAddPage = async function (req, res) {
+    return res.render('adminPerformanceAction', {
+        title: "Add & Update Feedback",
+        id: req.params.id
     })
 }
 
-module.exports.addReview = async  function (req, res) {
+module.exports.addReview = async function (req, res) {
     try {
         // add performance and save it
         var addPerformance = await Performance(req.body);
@@ -16,7 +16,7 @@ module.exports.addReview = async  function (req, res) {
         // add to employee
         const employeeById = await Employee.findById(req.body.employees);
         employeeById.performances = addPerformance.id;
-         employeeById.save();
+        employeeById.save();
         // add to admin
         const allAdmin = await Admin.find({});
         for (var i = 0; i < allAdmin.length; i++) {
@@ -25,27 +25,24 @@ module.exports.addReview = async  function (req, res) {
         }
         return res.redirect('/admin_performance/dashBoard');
     } catch (error) {
-        return res.send('error');
+        return res.flash('error' , "Error in adding feedback");
     }
 }
 
 
-module.exports.updateFeedback = async function(req , res){
-    try{
-        // const data = await Performance.findOne({employees : req.body.employees});
-        // console.log(data)
-        const updatePerformance = await Performance.findOne({employees : req.body.employees});;
+module.exports.updateFeedback = async function (req, res) {
+    try {
+        const updatePerformance = await Performance.findOne({ employees: req.body.employees });;
         updatePerformance.problemSolving = req.body.problemSolving;
         updatePerformance.teamwork = req.body.teamwork;
         updatePerformance.communication = req.body.communication;
         updatePerformance.accuracyOfWork = req.body.accuracyOfWork;
         updatePerformance.attendance = req.body.attendance;
-        console.log(updatePerformance);
         await updatePerformance.save();
-        req.flash('success' , "Feedback Updated SuccessFully !!");
+        req.flash('success', "Feedback Updated SuccessFully !!");
         return res.redirect('/admin_performance/dashBoard');
-    }catch(error){
-        return res.send("error");
+    } catch (error) {
+        return res.flash('error' , "Error in updating Feedback !! ");
     }
 }
 

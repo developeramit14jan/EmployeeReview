@@ -34,12 +34,14 @@ module.exports.register = async function (req, res) {
 }
 module.exports.performanceReviewList = async function (req, res) {
     try {
-        var allEmployee = await Employee.findOne({email :req.cookies.id});
+        var allEmployee = await Employee.findOne({ email: req.cookies.id });
         var feedback = allEmployee.feedback;
         var list = [];
         for (var i = 0; i < feedback.length; i++) {
             const data = await Employee.findById(feedback[i]);
-            list.push(data);
+            if (data != null) {
+                list.push(data);
+            }
         }
         res.render('employeeDashboard', {
             title: "Employee",
@@ -74,12 +76,11 @@ module.exports.submitFeedback = async function (req, res) {
 }
 module.exports.feedbackPage = async function (req, res) {
     try {
-        console.log(req.params.id)
         return res.render('submitFeedback', {
             title: "Feedback",
             id: req.params.id
         });
     } catch (error) {
-        return res.send("error in page");
+        return res.flash('error', 'Error on Feedback!!');
     }
 }
