@@ -31,9 +31,14 @@ module.exports.LoginEmployee = async function (req, res) {
 // make employee as  admin
 module.exports.registerAdmin = async function (req, res) {
     try {
-        console.log(req.body);
-        const registerAdmin = await Admin.create(req.body);
-        req.flash('success', 'Admin Registered successfully');
+        const adminPresent = await Admin.findOne({email : req.body.email});
+        if(adminPresent != null){
+            req.flash('error', 'Admin Registered Already !!');
+        }else{
+            const registerAdmin = await Admin.create(req.body);
+            req.flash('success', 'Admin Registered successfully');
+        }
+        
         return res.redirect('/admin_employee/employee_dashboard');
     } catch (error) {
         return res.send("Error during registation of admin !!");

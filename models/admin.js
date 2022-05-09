@@ -2,11 +2,13 @@ const mongoose = require('mongoose');
 const admin = new mongoose.Schema ({
     email: {
         type: String,
-        require: true
+        require: true,
+        unique:true
     },
     password: {
         type: String,
-        require: true
+        require: true,
+        unique:true
     },
     employeeId: [{
         type: mongoose.Schema.Types.ObjectId,

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 const employee = new mongoose.Schema(
     {
         name: {
@@ -7,15 +8,18 @@ const employee = new mongoose.Schema(
         },
         email: {
             type: String,
-            require: true
+            require: true,
+            unique:true,
         },
         password: {
             type: String,
-            require: true
+            require: true,
+            unique:true
         },
         mobile:{
             type:String,
-            require : true
+            require : true,
+            unique:true
         },
         city :{
             type:String,

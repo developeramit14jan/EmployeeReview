@@ -18,7 +18,10 @@ module.exports.addEmployee = async function (req, res) {
         } else {
             const addemployee = new Employee(req.body);
             await addemployee.save();
-            
+            // now add the employee to all admin
+            var allAdmin = await Admin.findOne({ email: req.cookies.id });
+            allAdmin.employeeId.push(addemployee.id);
+            await allAdmin.save();
             req.flash('success', 'Employee added successfully !!');
             return res.redirect('/admin_employee/employee_dashboard');
         }
@@ -34,8 +37,6 @@ module.exports.deleteEmployee = async function (req, res) {
             req.flash('error', 'Already Deleted !')
             return res.redirect('/admin_employee/employee_dashboard');
         } else {
-            console.log(deletedEmployee.feedback);
-            console.log(deletedEmployee.performances);
             if (deletedEmployee.feedback.length > 0) {
                 for (var i = 0; i < deletedEmployee.feedback.length; i++) {
                     await Performance.findOneAndDelete({ id: deletedEmployee.feedback[i] });
@@ -74,13 +75,13 @@ module.exports.adminPerformancePage = async function (req, res) {
             const data = await Performance.findById(performanceArray[i]).populate('employees');
             if (data != null) {
                 list.push(data);
-            } else {
-                break;
             }
         }
+        const employeeList = await Employee.find({});
         return res.render('adminPerformance', {
             title: "AdminPerformancePage",
-            list: list
+            list: list,
+            employeeList: employeeList
         })
     } catch (error) {
         return res.send("error in admin performance panal !");
@@ -98,8 +99,9 @@ module.exports.assignEmployee = async function (req, res) {
             assignFeedback[0].feedback.push(forEmployee[0]._id.toString());
             await assignFeedback[0].save();
             req.flash('success', 'Employee Assign Success fully !!');
+        }else{
+            req.flash('error', 'Employee Assign Already !!');
         }
-        req.flash('error', 'Employee Assign Already !!');
         return res.redirect('back');
     } catch (error) {
         return res.send("Error while Assigning Employee");

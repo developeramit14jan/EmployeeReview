@@ -11,21 +11,26 @@ module.exports.adminPerformanceAddPage = async function (req, res) {
 module.exports.addReview = async function (req, res) {
     try {
         // add performance and save it
-        var addPerformance = await Performance(req.body);
-        await addPerformance.save();
-        // add to employee
-        const employeeById = await Employee.findById(req.body.employees);
-        employeeById.performances = addPerformance.id;
-        employeeById.save();
-        // add to admin
-        const allAdmin = await Admin.find({});
-        for (var i = 0; i < allAdmin.length; i++) {
-            allAdmin[i].performance.push(addPerformance.id);
-            allAdmin[i].save();
+        const performancePresent = await Performance.findOne({ employees: req.body.employees });
+        if (performancePresent) {
+            req.flash('error', 'FeedBack Already Added !!');
+        } else {
+            var addPerformance = await Performance(req.body);
+            await addPerformance.save();
+            // add to employee
+            const employeeById = await Employee.findById(req.body.employees);
+            employeeById.performances = addPerformance.id;
+            employeeById.save();
+            // add to admin
+            const allAdmin = await Admin.find({});
+            for (var i = 0; i < allAdmin.length; i++) {
+                allAdmin[i].performance.push(addPerformance.id);
+                allAdmin[i].save();
+            }
         }
         return res.redirect('/admin_performance/dashBoard');
     } catch (error) {
-        return res.flash('error' , "Error in adding feedback");
+        return res.send("Error in adding feedback");
     }
 }
 
@@ -42,7 +47,7 @@ module.exports.updateFeedback = async function (req, res) {
         req.flash('success', "Feedback Updated SuccessFully !!");
         return res.redirect('/admin_performance/dashBoard');
     } catch (error) {
-        return res.flash('error' , "Error in updating Feedback !! ");
+        return res.flash('error', "Error in updating Feedback !! ");
     }
 }
 

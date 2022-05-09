@@ -3,9 +3,9 @@ const Admin = require('../models/admin');
 const env = require('../config/environment');
 const Performance = require('../models/performance');
 module.exports.signup = async function (req, res) {
-    // if(req.isAuthenticated()){
-    //     return res.redirect('/employee/perfromancelist');
-    // }
+    if(req.isAuthenticated()){
+        return res.redirect('/employee/perfromancelist');
+    }
     res.render('signUp', {
         title: "Sign Up"
     });
@@ -29,7 +29,7 @@ module.exports.register = async function (req, res) {
             return res.redirect('/');
         }
     } catch (error) {
-        return req.flash('error', 'Error in SignUp !!');
+        return res.send('Error in SignUp !!');
     }
 }
 module.exports.performanceReviewList = async function (req, res) {

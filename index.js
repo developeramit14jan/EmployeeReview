@@ -25,10 +25,10 @@ app.use(session({
         maxAge: (1000 * 60 * 100)
     },
     store: new MongoStore({
-        mongoUrl :'mongodb://localhost:27017/employee_Review',
+        mongoUrl :env.mongoose_connect,
         autoRemve:'interval',
         autoRemoveInterval:'1'
-    }),fumction(error){
+    }),function(error){
         console.log(err || 'connect-mongo setup ok')
     }
 }));
