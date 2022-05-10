@@ -17,6 +17,12 @@ employeereview@1.0.0
 ├── passport@0.5.2
  ## For LocalSystem :
 for this objective user can download the repository from git and then extract the folder and then type npm start command to run this .
-To Sign In :
+## To Sign In :
 A user need to type Email_Id , Password , And there role in organization such as : Admin or Employee
 Then Click On Submit Button
+
+## For Admin :
+Admin can not register so Email Id for Admin : "admin@gmail.com" and Password : "admin" 
+## Take A look :
+This Project is hosted live at [Link](https://employeereview.herokuapp.com/)
+Git Hub [Link](https://github.com/developeramit14jan/EmployeeReview)

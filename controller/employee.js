@@ -29,7 +29,7 @@ module.exports.register = async function (req, res) {
             return res.redirect('/');
         }
     } catch (error) {
-        return res.send('Error in SignUp !!');
+        return res.send("<h1>Error in SignUp !!</h1>");
     }
 }
 module.exports.performanceReviewList = async function (req, res) {
@@ -48,7 +48,7 @@ module.exports.performanceReviewList = async function (req, res) {
             allEmployee: list
         });
     } catch (error) {
-        return res.flash('error', "Error in sendiding data to Employee Dashboard !!");
+        return res.send("<h1>Error in sendiding data to Employee Dashboard !!</h1>");
     }
 }
 
@@ -71,7 +71,7 @@ module.exports.submitFeedback = async function (req, res) {
         req.flash('success', 'Feedback Submitted Successfully !!');
         return res.redirect('/employee/perfromancelist');
     } catch (error) {
-        return res.send("error");
+        return res.send("<h1>Error on Submitting Feedback !!</h1>");
     }
 }
 module.exports.feedbackPage = async function (req, res) {
@@ -81,6 +81,6 @@ module.exports.feedbackPage = async function (req, res) {
             id: req.params.id
         });
     } catch (error) {
-        return res.send('Error on Feedback!!');
+        return res.send('<h1>Error on Feedback!!</h1>');
     }
 }

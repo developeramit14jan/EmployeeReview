@@ -14,6 +14,7 @@ module.exports.addReview = async function (req, res) {
         const performancePresent = await Performance.findOne({ employees: req.body.employees });
         if (performancePresent) {
             req.flash('error', 'FeedBack Already Added !!');
+            return res.redirect('/admin_performance/dashBoard');
         } else {
             var addPerformance = await Performance(req.body);
             await addPerformance.save();
@@ -28,9 +29,10 @@ module.exports.addReview = async function (req, res) {
                 allAdmin[i].save();
             }
         }
+        req.flash('success', 'FeedBack Added !!');
         return res.redirect('/admin_performance/dashBoard');
     } catch (error) {
-        return res.send("Error in adding feedback");
+        return res.send("<h1>Error in adding feedback</h1>");
     }
 }
 
@@ -47,7 +49,7 @@ module.exports.updateFeedback = async function (req, res) {
         req.flash('success', "Feedback Updated SuccessFully !!");
         return res.redirect('/admin_performance/dashBoard');
     } catch (error) {
-        return res.flash('error', "Error in updating Feedback !! ");
+        return res.send("<h1>Error in updating Feedback !! </h1>");
     }
 }
 

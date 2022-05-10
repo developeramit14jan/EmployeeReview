@@ -22,8 +22,7 @@ module.exports.LoginEmployee = async function (req, res) {
         }
 
     } catch (error) {
-        req.flash('error' , 'Invalid username & password !!');
-        return res.send("Login Password doesnot match");
+        return res.send("<h1>Login Password doesnot match</h1>");
     }
 }
 
@@ -41,7 +40,7 @@ module.exports.registerAdmin = async function (req, res) {
         
         return res.redirect('/admin_employee/employee_dashboard');
     } catch (error) {
-        return res.send("Error during registation of admin !!");
+        return res.send("<h1>Error during registation of admin !!</h1>");
     }
 }
 
