@@ -57,9 +57,18 @@ module.exports.deleteEmployee = async function (req, res) {
 
 module.exports.updateEmployee = async function (req, res) {
     try {
-        var updatedEmployee = await Employee.findOneAndUpdate(req.body);
-        req.flash('success', 'Updated Success fully !!');
-        return res.redirect('/admin_employee/employee_dashboard');
+        const employeePresent = await Employee.findOne({ email: req.body.email });
+        if (!employeePresent) {
+            req.flash('error', 'Employee Email Not Found');
+            return res.redirect('/admin_employee/employee_dashboard');
+        }else{
+            employeePresent.name = req.body.name;
+            employeePresent.password = req.body.password;
+            employeePresent.save();
+            req.flash('success', 'Updated Success fully !!');
+            return res.redirect('/admin_employee/employee_dashboard');
+        }
+
     } catch (error) {
         return res.send("Error in updating Employee !!");
     }
@@ -99,7 +108,7 @@ module.exports.assignEmployee = async function (req, res) {
             assignFeedback[0].feedback.push(forEmployee[0]._id.toString());
             await assignFeedback[0].save();
             req.flash('success', 'Employee Assign Success fully !!');
-        }else{
+        } else {
             req.flash('error', 'Employee Assign Already !!');
         }
         return res.redirect('back');
